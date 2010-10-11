@@ -1,0 +1,35 @@
+<project>
+    <property name="src" location="src"/>
+    <property name="bin" location="bin"/>
+	<property name="build" location="build"/>
+
+    <path id="classpath">
+        <fileset dir="depends">
+            <include name="*.jar" />
+        </fileset>
+        <pathelement path="${bin}"/>
+    </path>
+
+    <target name="clean">
+        <delete dir="${bin}"/>
+    </target>
+
+    <target name="build">
+        <mkdir dir="${bin}"/>
+        <javac srcdir="${src}" destdir="${bin}"/>
+
+    </target>
+
+	<target name="jar">
+		<mkdir dir="${build}"/>
+		<jar destfile="${build}/loggy.jar"
+			basedir="${bin}"
+			includes="**/*">
+			<manifest>
+			   <attribute name="Main-Class"
+			              value="me.isburning.loggy.Log"/>
+			</manifest>
+
+		</jar>
+	</target>
+</project>
